@@ -35,3 +35,11 @@ python manage.py migrate
 winpty python manage.py createsuperuser
 python manage.py createsuperuser
 python manage.py changepassword USERNAME
+
+# Comandos no shell do django
+python manage.py shell
+from contact.models import Contact
+c = Contact(first_name='Gustavo')
+c.save()
+c.delete()
+c = Contact.objects.get(id=4)
