@@ -1,6 +1,7 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from contact.models import Contact
 from django.http import Http404
+from django.db.models import Q
 
 # Create your views here.
 
@@ -18,6 +19,33 @@ def index(request):
         context
     )
 
+# Função search da agenda
+
+def search(request):
+    search_value = request.GET.get('q', '').strip()
+
+    contacts = Contact.objects.filter(show=True).filter(Q(first_name__icontains=search_value) | #isso seria um OR
+                                                        Q(last_name__icontains=search_value) |
+                                                        Q(phone__icontains=search_value) |
+                                                        Q(email__icontains=search_value)).order_by('-id')
+
+    #Caso o usuário digite "espaço" irá redireciona-lo à página principal
+    if search_value == '':
+        return redirect('contact:index')
+
+    context = {
+        'contacts': contacts,
+        'site_title': 'Search - ',
+        'search_value': search_value,
+    }
+
+    return render(
+        request,
+        'contact/index.html',
+        context
+    )
+
+# Título da aba e gerar erro404
 
 def contact(request, contact_id):
     # single_contact = Contact.objects.filter(pk=contact_id).first()
