@@ -1,11 +1,9 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from contact.models import Contact
-from django.http import Http404
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.shortcuts import render
 
-# Create your views here.
 
 def index(request):
     contacts = Contact.objects.filter(show=True).order_by('-id')
