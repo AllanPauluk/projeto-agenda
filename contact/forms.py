@@ -10,13 +10,15 @@ class ContactForm(forms.ModelForm):
                                  label='Nome', help_text='Texto de ajuda para o usuário')
     
     last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Escreva seu sobrenome'}),
-                                 label='Sobrenome', help_text='Texto de ajuda para o usuário')    
+                                 label='Sobrenome')    
     phone = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Escreva seu número de telefone'}),
-                                 label='Telefone', help_text='Texto de ajuda para o usuário')
+                                 label='Telefone')
+    email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Escreva o email do contato'}),
+                                 label='Email')
 
     class Meta:
         model = models.Contact
-        fields = ('first_name', 'last_name', 'phone',)
+        fields = ('first_name', 'last_name', 'phone', 'email', 'description', 'category',)
 
 
     # Valor de mais de um campo
