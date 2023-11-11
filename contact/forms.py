@@ -6,19 +6,21 @@ from . import models
 
 class ContactForm(forms.ModelForm):
 
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Escreva seu primeiro nome'}),
-                                 label='Nome', help_text='Texto de ajuda para o usuário')
+    # first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Escreva seu primeiro nome'}),
+    #                              label='Nome', help_text='Texto de ajuda para o usuário')
     
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Escreva seu sobrenome'}),
-                                 label='Sobrenome')    
-    phone = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Escreva seu número de telefone'}),
-                                 label='Telefone')
-    email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Escreva o email do contato'}),
-                                 label='Email')
+    # last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Escreva seu sobrenome'}),
+    #                              label='Sobrenome')    
+    # phone = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Escreva seu número de telefone'}),
+    #                              label='Telefone')
+    # email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Escreva o email do contato'}),
+    #                              label='Email')
+    picture = forms.ImageField(
+        widget=forms.FileInput(attrs={'accept': 'image/*'}))
 
     class Meta:
         model = models.Contact
-        fields = ('first_name', 'last_name', 'phone', 'email', 'description', 'category',)
+        fields = ('first_name', 'last_name', 'phone', 'email', 'description', 'category', 'picture',)
 
 
     # Valor de mais de um campo
