@@ -19,7 +19,7 @@ class ContactForm(forms.ModelForm):
     # email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Escreva o email do contato'}),
     #                              label='Email')
     picture = forms.ImageField(
-        widget=forms.FileInput(attrs={'accept': 'image/*'}))
+        widget=forms.FileInput(attrs={'accept': 'image/*'}),required=False)
 
     class Meta:
         model = models.Contact
